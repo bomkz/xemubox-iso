@@ -4,3 +4,5 @@ if grep -Fqa 'accessibility=' /proc/cmdline &> /dev/null; then
 fi
 
 ~/.automated_script.sh
+
+~/xemubox-postinstall-scripts/startinstall.sh
