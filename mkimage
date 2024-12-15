@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mkarchiso -v -w /tmp/work ./ ./
