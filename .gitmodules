@@ -1,3 +1,6 @@
 [submodule "airootfs/root/xemubox-archinstall-template"]
 	path = airootfs/root/xemubox-archinstall-template
 	url = https://github.com/bomkz/xemubox-archinstall-template
+[submodule "airootfs/root/xemubox-postinstall-scripts"]
+	path = airootfs/root/xemubox-postinstall-scripts
+	url = https://github.com/bomkz/xemubox-postinstall-scripts
