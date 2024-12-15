@@ -1,0 +1,3 @@
+[submodule "airootfs/root/xemubox-archinstall-template"]
+	path = airootfs/root/xemubox-archinstall-template
+	url = https://github.com/bomkz/xemubox-archinstall-template
