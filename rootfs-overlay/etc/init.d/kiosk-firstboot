@@ -1,0 +1,50 @@
+#!/sbin/openrc-run
+# =============================================================================
+# kiosk-firstboot — Expand data partition to fill drive
+# Runs once, touches a flag file, never runs again
+# =============================================================================
+extra_config="/etc/env.conf"
+
+
+depend() {
+    before kiosk
+    need localmount
+}
+
+name="$firstbootname"
+description="$firstbootdesc"
+start() {
+    . $extra_config
+    [ -f "$firstbootflag" ] && return 0
+
+    ebegin "Expanding ${kioskdatapartlabel} partition"
+
+    # Find the disk that holds our root partition
+    DATA_PART="/dev/disk/by-partlabel/${kioskdatapartlabel}"
+
+    einfo "Data partition: $DATA_PART"
+
+    if [ ! -b "$DATA_PART" ]; then
+        ewarn "Could not find data partition at $DATA_PART."
+        eend 0
+        return 0
+    fi
+
+    # Unmount data partition before modifying.
+    umount $DATA_PART
+
+    # 
+    dev=$(readlink -f $DATA_PART)
+    parent=$(lsblk -no PKNAME "$dev")
+    pardev=/dev/$parent
+
+    sgdisk -e $pardev
+
+    parted $pardev resizepart 3 100%
+    
+    touch $firstbootflag
+
+    reboot
+
+    eend 0
+}

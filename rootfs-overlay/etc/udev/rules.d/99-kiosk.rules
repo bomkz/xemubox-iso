@@ -1,0 +1,34 @@
+# =============================================================================
+# 99-kiosk.rules — udev rules for the xemu kiosk
+# =============================================================================
+
+# Give kiosk user access to DRM/GPU devices
+SUBSYSTEM=="drm", GROUP="video", MODE="0660"
+SUBSYSTEM=="dri", GROUP="video", MODE="0660"
+
+# Input devices — allow kiosk group
+SUBSYSTEM=="input", GROUP="input", MODE="0660"
+
+# Xbox controllers (wired and wireless)
+# Xbox 360 wired
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="028e", \
+    GROUP="input", MODE="0660", SYMLINK+="input/xbox360_controller"
+
+# Xbox One wired
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="02ea", \
+    GROUP="input", MODE="0660", SYMLINK+="input/xbox_one_controller"
+
+# Xbox 360 wireless receiver
+SUBSYSTEM=="usb", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="0719", \
+    GROUP="input", MODE="0660"
+
+# Generic gamepad
+SUBSYSTEM=="input", ATTRS{name}=="*Xbox*", GROUP="input", MODE="0660"
+SUBSYSTEM=="input", ATTRS{name}=="*XBOX*", GROUP="input", MODE="0660"
+SUBSYSTEM=="input", ATTRS{name}=="*gamepad*", GROUP="input", MODE="0660"
+
+# Sound devices
+SUBSYSTEM=="sound", GROUP="audio", MODE="0660"
+
+# Video4Linux (capture cards etc.)
+SUBSYSTEM=="video4linux", GROUP="video", MODE="0660"
