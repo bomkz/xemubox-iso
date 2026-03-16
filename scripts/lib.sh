@@ -15,6 +15,7 @@
 : "${ROOTFS_DIR:=/builder/rootfs}"
 : "${OUTPUT_DIR:=/output}"
 : "${OVERLAY_DIR:=/builder/rootfs-overlay}"
+: "${EXTOVERLAY_DIR:=/builder/overlay}"
 : "${CONFIG_DIR:=/builder/config}"
 : "${XEMU_USE_APPIMAGE:=auto}"
 : "${ENABLE_NVIDIA_OPEN:=true}"

@@ -1,0 +1,24 @@
+#!/sbin/openrc-run
+
+extra_config="/etc/env.conf"
+
+depend() {
+    need dbus udev seatd
+    after localmount
+    after alsa
+}
+
+description="$kioskappname auto-start"
+name="$kioskappname"
+
+start() {
+    . $extra_config
+    ebegin "Preparing kiosk runtime dirs"
+    # Create /run/user/<uid> for the kiosk user before their session starts
+    local uid
+    uid=$(id -u $kioskusername 2>/dev/null || echo 1000)
+    mkdir -p "/run/user/$uid"
+    chmod 0700 "/run/user/$uid"
+    chown $kioskusername:$kioskusername "/run/user/$uid"
+    eend 0
+}

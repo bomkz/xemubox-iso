@@ -1,0 +1,25 @@
+[system]
+  bootrom_path   = "$XEMUMCPX_IMGDIR"
+  flashrom_path  = "$XEMUBIOS_IMGDIR"
+  hdd_path       = "$XEMUHDD_IMGDIR"
+  dvd_path       = ""          # auto-set by launch-xemu.sh
+  mem_limit      = "64"        # "64" | "128" — original Xbox RAM
+  avpack         = "hdtv"      # "composite" | "hdtv" | "scart"
+
+[display]
+  fullscreen         = true
+  scale              = "stretch"   # "fit" | "stretch" | "integer"
+  vsync              = true
+  show_fps           = false
+
+[audio]
+  backend  = "sdl"
+  use_dsp  = false
+
+[network]
+  enabled = false        # enable if you want Xbox Live emulation (Xemu.net)
+  backend = "user"
+
+[input]
+  # Controllers are detected automatically
+  # To bind: launch xemu manually once to configure

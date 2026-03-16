@@ -36,11 +36,13 @@ RUN apk add --no-cache \
     # misc
     jq \
     pv \
-    file
+    file \
+    envsubst
 
 # ── Copy build scripts and overlay ────────────────────────────────────────────
 COPY scripts/           /builder/scripts/
 COPY rootfs-overlay/    /builder/rootfs-overlay/
+COPY overlay/           /builder/overlay
 COPY config/            /builder/config/
 
 RUN chmod +x /builder/scripts/*.sh
